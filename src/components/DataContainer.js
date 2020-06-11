@@ -1,17 +1,22 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import DataBox from './DataBox'
 
-export class DataContainer extends Component {
+export default function DataContainer(props) {
 
-    state = {
+    const [state, setState] = useState({
         cases: 0,
         deaths: 0,
         tests: 0
+    })
+
+    const dataContainerStyle = {
+        display: 'flex',
+        justifyContent: 'space-between',
     }
 
-    fetchData = () => {
+    const fetchData = () => {
         console.log('fetch');
-        fetch(this.props.link).then(res => res.json()).then(data => {
+        fetch(props.link).then(res => res.json()).then(data => {
             let cases;
             let deaths;
             let tests;
@@ -24,13 +29,13 @@ export class DataContainer extends Component {
                 deaths = data.death.toLocaleString();
                 tests = data.total.toLocaleString();
             }
-            this.setState({
+            setState({
                 cases,
                 deaths,
                 tests,
              });
         }).catch(err => {
-            this.setState({
+            setState({
                 cases: "Error",
                 deaths: "Error",
                 tests: "Error"
@@ -38,33 +43,15 @@ export class DataContainer extends Component {
         });
     }
 
-    componentDidMount() {
-        console.log('mount');
-        this.fetchData();
-    }
+    useEffect(() => {
+        fetchData();
+    }, [props.link]);
 
-    componentDidUpdate(prevProps) {
-        console.log('update');
-        if(prevProps.link !== this.props.link) {
-            this.fetchData();
-        }
-    }
-
-    render() {
-        console.log('render');
-        return (
-            <div style={dataContainerStyle}>
-                <DataBox title='Cases' data={this.state.cases}/>
-                <DataBox title='Deaths' data={this.state.deaths}/>
-                <DataBox title='Tests' data={this.state.tests}/>
-            </div>
-        )
-    }
+    return (
+        <div style={dataContainerStyle}>
+            <DataBox title='Cases' data={state.cases}/>
+            <DataBox title='Deaths' data={state.deaths}/>
+            <DataBox title='Tests' data={state.tests}/>
+        </div>
+    )
 }
-
-const dataContainerStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-}
-
-export default DataContainer

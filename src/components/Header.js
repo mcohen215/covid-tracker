@@ -1,18 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class Header extends Component {
-    render() {
-        return (
-            <div style={headerStlye}>
-                COVID Tracker
-            </div>
-        )
+export default function Header() {
+
+    const headerStlye = {
+        fontSize: '3em',
+        marginTop: '.5em'
     }
-}
 
-const headerStlye = {
-    fontSize: '3em',
-    marginTop: '.5em'
+    return (
+        <div style={headerStlye}>
+            COVID Tracker
+        </div>
+    )
 }
-
-export default Header
