@@ -12,10 +12,10 @@ export default function DataContainer(props) {
     const dataContainerStyle = {
         display: 'flex',
         justifyContent: 'space-between',
+        marginBottom: '2em'
     }
 
     const fetchData = () => {
-        console.log('fetch');
         fetch(props.link).then(res => res.json()).then(data => {
             let cases;
             let deaths;

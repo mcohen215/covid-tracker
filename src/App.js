@@ -4,13 +4,14 @@ import Header from './components/Header';
 import SectionContainer from './components/SectionContainer'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import { states, stateMap, USCurrent } from './helpers/StateInfo'
+import { states, stateMap, USCurrent, USHistoric } from './helpers/Helpers'
 
 export default function App() {
 
   const [state, setState] = useState(
     {
       currentStateURL: 'https://covidtracking.com/api/v1/states/al/current.json',
+      historicStateURL: 'https://covidtracking.com/api/v1/states/al/daily.json',
       currentState: 'Alabama'
     }
   );
@@ -29,8 +30,10 @@ export default function App() {
 
   const handleChange = (e) => {
     let newCurrentURL = `https://covidtracking.com/api/v1/states/${stateMap[e.value]}/current.json`;
+    let newHistoricURL = `https://covidtracking.com/api/v1/states/${stateMap[e.value]}/daily.json`
     setState({
       currentStateURL: newCurrentURL,
+      historicStateURL: newHistoricURL,
       currentState: e.value
     });
   }
@@ -43,6 +46,8 @@ export default function App() {
       <SectionContainer
         title='US Data'
         current={USCurrent}
+        historic={USHistoric}
+        radioName='USChart'
       />
       
       <hr style={hrStyle} />
@@ -58,6 +63,8 @@ export default function App() {
         title='State Data'
         state={state.currentState} 
         current={state.currentStateURL}
+        historic={state.historicStateURL}
+        radioName='StateChart'
       />
 
     </div>

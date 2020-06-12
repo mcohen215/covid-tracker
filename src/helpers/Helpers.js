@@ -1,5 +1,7 @@
 export const USCurrent = 'https://covidtracking.com/api/v1/us/current.json';
 
+export const USHistoric = 'https://covidtracking.com/api/v1/us/daily.json';
+
 export const stateMap = {};
 stateMap['Alabama'] = 'al';
 stateMap['Alaska'] = 'ak';
@@ -53,3 +55,18 @@ stateMap['Wisconsin'] = 'wi';
 stateMap['Wyoming'] = 'wy';
 
 export const states = Object.keys(stateMap);
+
+export const JSONFieldMap = {};
+JSONFieldMap['Total Cases'] = 'positive';
+JSONFieldMap['Total Deaths'] = 'death';
+JSONFieldMap['Total Tests'] = 'total';
+JSONFieldMap['New Cases'] = 'positiveIncrease';
+JSONFieldMap['New Deaths'] = 'deathIncrease';
+JSONFieldMap['New Tests'] = 'totalTestResultsIncrease';
+
+JSONFieldMap['positive'] = 'Total Cases';
+JSONFieldMap['death'] = 'Total Deaths';
+JSONFieldMap['total'] = 'Total Tests';
+JSONFieldMap['positiveIncrease'] = 'New Cases';
+JSONFieldMap['deathIncrease'] = 'New Deaths';
+JSONFieldMap['totalTestResultsIncrease'] = 'New Tests';
