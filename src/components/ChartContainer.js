@@ -17,12 +17,15 @@ export default function ChartContainer(props) {
         flexBasis: '10%',
     }
 
+    /* Updates the state if the radio button is changed */
     const handleChange = e => {
         setState({
             selectedValue: e.target.value
         });
     }
 
+    /* Draws the radio button options (what the chart should display), then draws the chart itself, passing it the API link
+    to fetch its data from, and which radio button is selected. */
     return (
         <div style={chartContainerStyle} onChange={handleChange}>
             <div style={radioButtonStyle}>

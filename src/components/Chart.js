@@ -14,10 +14,13 @@ export default function Chart(props) {
         flexBasis: '90%',
     }
 
+    /* If the data link or radio button option changes, re fetch the data and update the state with the correct data to be shown
+    in the chart. */
     useEffect(() => {
         fetch(props.link).then(res => res.json()).then(data => getNewStateValues(data));
     }, [props.link, props.selectedValue]);
 
+    /* Gets the new labels and data for the chart, then sets the state with that new data to then re draw the chart */
     const getNewStateValues = data => {
         let newLabels = getNewLabels(data);
         let newData = getNewData(data);
@@ -29,6 +32,7 @@ export default function Chart(props) {
         });
     };
 
+    /* Gets the new labels (dates) from the JSON response */
     const getNewLabels = data => {
         let newLabels = [];
         data.forEach(obj => {
@@ -38,6 +42,7 @@ export default function Chart(props) {
         return newLabels;
     };
 
+    /* Gets the new data from the JSON response */
     const getNewData = data => {
         let newData = [];
         let selectedValue = props.selectedValue;
@@ -48,6 +53,7 @@ export default function Chart(props) {
         return newData;
     };
 
+    /* After fetching data from the API, draws the chart and passes it the correctly formatted data. */
     return (
         <div style={chartStlye}>
             <Line

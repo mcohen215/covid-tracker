@@ -1,7 +1,10 @@
+//Static link for US current data
 export const USCurrent = 'https://covidtracking.com/api/v1/us/current.json';
 
+//Static link for US historic data
 export const USHistoric = 'https://covidtracking.com/api/v1/us/daily.json';
 
+//Dictionary which maps state full name to 2 letter abbreviation (for API link purposes)
 export const stateMap = {};
 stateMap['Alabama'] = 'al';
 stateMap['Alaska'] = 'ak';
@@ -54,8 +57,10 @@ stateMap['West Virginia'] = 'wv';
 stateMap['Wisconsin'] = 'wi';
 stateMap['Wyoming'] = 'wy';
 
+//Array containing all 50 states (for the dropdown menu)
 export const states = Object.keys(stateMap);
 
+//Dictionary which maps radio button options to what the field name is in the JSON repsonse from the API, and vice versa.
 export const JSONFieldMap = {};
 JSONFieldMap['Total Cases'] = 'positive';
 JSONFieldMap['Total Deaths'] = 'death';

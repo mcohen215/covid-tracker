@@ -9,6 +9,7 @@ export default function SectionHeader(props) {
         marginBottom: '1em'
     }
 
+    /* Creates the header for this section */
     return (
         <div style={headerStlye}>
             {props.state === undefined ? props.title : `${props.title} - ${props.state}`}

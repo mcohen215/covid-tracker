@@ -28,6 +28,8 @@ export default function App() {
     marginBottom: '3em'
   }
 
+  /* Event handler for dropwdown option change. It gets the state that was selected from the dropdown,
+  and sets the new state API link in the component state. */
   const handleChange = (e) => {
     let newCurrentURL = `https://covidtracking.com/api/v1/states/${stateMap[e.value]}/current.json`;
     let newHistoricURL = `https://covidtracking.com/api/v1/states/${stateMap[e.value]}/daily.json`
@@ -41,8 +43,12 @@ export default function App() {
   return(
     <div style={appStyle}>
 
+      {/* The Header component of the webpage */}
       <Header />
 
+      {/* The first section container on the webpage. Each section container contains a header for that section,
+      the boxes to hold the data points, and a chart. This is the section container for the US data */}
+      {/* title is used for the header, current and historic are API links, and radioName is a name for the radio button group */}
       <SectionContainer
         title='US Data'
         current={USCurrent}
@@ -52,6 +58,10 @@ export default function App() {
       
       <hr style={hrStyle} />
 
+      {/* The Dropdown component that corresponds to the second section container. This is the dropdown that lets you chose
+      state */}
+      {/* options is an array containing the dropdown options, onChange is the event handler, value is the current selected
+      value that should be shown on the dropdown, and placeholder is default text to be shown if no options available */}
       <Dropdown 
         options={states} 
         onChange={handleChange}
@@ -59,6 +69,9 @@ export default function App() {
         placeholder='Select a State'
       />
 
+      {/* The second section container on the webpage. This is the section container for state data. */}
+      {/* title is used for the header, current and historic are API links, radioName is a name for the radio button group,
+      and state is the current selected state being displayed. */}
       <SectionContainer 
         title='State Data'
         state={state.currentState} 

@@ -17,6 +17,7 @@ export default function DataBox(props) {
         fontSize: '1.5em'
     }
 
+    /* Draws a header to each databox and displays the data point under it */
     return (
         <div style={dataBoxStyle}>
             <p style={headerStyle}>{props.title}</p>

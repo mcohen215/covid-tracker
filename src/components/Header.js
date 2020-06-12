@@ -9,7 +9,7 @@ export default function Header() {
 
     return (
         <div style={headerStlye}>
-            COVID Tracker
+            <p>COVID Tracker</p>
         </div>
     )
 }

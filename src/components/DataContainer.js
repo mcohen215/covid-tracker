@@ -15,6 +15,7 @@ export default function DataContainer(props) {
         marginBottom: '2em'
     }
 
+    /* Fetches data from the API given the link it is passed, then updates the state to contain the new data points. */
     const fetchData = () => {
         fetch(props.link).then(res => res.json()).then(data => {
             let cases;
@@ -43,10 +44,14 @@ export default function DataContainer(props) {
         });
     }
 
+    /* This function will run if there is an update to the API link (if the state has changed), therefore it will fetch
+    updated data and pass the new data to the DataBoxes. */
     useEffect(() => {
         fetchData();
     }, [props.link]);
 
+    /* After fetching the data from the API, draws 3 data boxes which display the number of total cases, deaths, and tests for
+    the entire US or the specific state. Passes each databox the title for that box and the data point to be displayed */
     return (
         <div style={dataContainerStyle}>
             <DataBox title='Cases' data={state.cases}/>
