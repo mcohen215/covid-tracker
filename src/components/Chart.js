@@ -7,18 +7,24 @@ export default function Chart(props) {
     const [state, setState] = useState({
         labels: [],
         label: '',
-        data: []
+        data: [],
+        JSONData: []
     });
 
     const chartStlye = {
         flexBasis: '90%',
     }
 
-    /* If the data link or radio button option changes, re fetch the data and update the state with the correct data to be shown
+    /* If the data link option changes, re fetch the data and update the state with the correct data to be shown
     in the chart. */
     useEffect(() => {
         fetch(props.link).then(res => res.json()).then(data => getNewStateValues(data));
-    }, [props.link, props.selectedValue]);
+    }, [props.link]);
+
+    /* If the selected radio button changes, don't re fetch the data, but update the data shown. */
+    useEffect(() => {
+        getNewStateValues(state.JSONData);
+    }, [props.selectedValue]);
 
     /* Gets the new labels and data for the chart, then sets the state with that new data to then re draw the chart */
     const getNewStateValues = data => {
@@ -28,7 +34,8 @@ export default function Chart(props) {
         setState({
             labels: newLabels,
             label: JSONFieldMap[props.selectedValue],
-            data: newData
+            data: newData,
+            JSONData: data
         });
     };
 
