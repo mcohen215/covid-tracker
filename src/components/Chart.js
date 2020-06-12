@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Bar, Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { JSONFieldMap } from '../helpers/Helpers'
 
 export default function Chart(props) {
@@ -43,7 +43,9 @@ export default function Chart(props) {
     const getNewLabels = data => {
         let newLabels = [];
         data.forEach(obj => {
-            newLabels.push(obj['date']);
+            let date = obj['date'].toString();
+            let formattedDate = `${date.substring(4,6)}-${date.substring(6)}`;
+            newLabels.push(formattedDate);
         })
         newLabels.reverse();
         return newLabels;

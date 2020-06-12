@@ -4,7 +4,8 @@ export default function Header() {
 
     const headerStlye = {
         fontSize: '3em',
-        marginTop: '.5em'
+        marginTop: '.5em',
+        fontWeight: 'bold'
     }
 
     return (
