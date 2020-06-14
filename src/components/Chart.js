@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import { JSONFieldMap } from '../helpers/Helpers'
+import { JSONFieldMap } from '../helpers/Helpers';
 
 export default function Chart(props) {
 
@@ -13,7 +13,7 @@ export default function Chart(props) {
 
     const chartStlye = {
         flexBasis: '90%',
-    }
+    };
 
     /* If the data link option changes, re fetch the data and update the state with the correct data to be shown
     in the chart. */
@@ -44,9 +44,9 @@ export default function Chart(props) {
         let newLabels = [];
         data.forEach(obj => {
             let date = obj['date'].toString();
-            let formattedDate = `${date.substring(4,6)}-${date.substring(6)}`;
+            let formattedDate = `${date.substring(4, 6)}-${date.substring(6)}`;
             newLabels.push(formattedDate);
-        })
+        });
         newLabels.reverse();
         return newLabels;
     };
@@ -57,7 +57,7 @@ export default function Chart(props) {
         let selectedValue = props.selectedValue;
         data.forEach(obj => {
             newData.push(obj[selectedValue]);
-        })
+        });
         newData.reverse();
         return newData;
     };
@@ -72,11 +72,16 @@ export default function Chart(props) {
                         {
                             label: state.label,
                             data: state.data,
+                            borderColor: 'rgba(70, 130, 180, 1)',
+                            backgroundColor: 'rgba(70, 130, 180, 0.2)',
+                            pointBorderColor: 'rgba(70, 130, 180, 1)',
+                            pointBackgroundColor: 'rgba(70, 130, 180, 1)',
+                            pointRadius: 2.5
                         }
                     ]
                 }}
-                options={{}} 
+                options={{}}
             />
         </div>
-    )
+    );
 }
